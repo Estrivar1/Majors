@@ -1,0 +1,42 @@
+.container {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px; /* Lowering the columns */
+    background-color: #f0f0f0; /* Adding a colorful background */
+    padding: 20px; /* Adding padding for better visual appearance */
+}
+
+.column {
+    margin: 0 20px;
+    text-align: center;
+}
+
+.column-title {
+    margin-bottom: 20px;
+    font-size: 24px; /* Increasing the font size */
+}
+
+.major-box {
+    display: block;
+    margin-bottom: 20px; /* Increasing the space between major boxes */
+    font-size: 20px; /* Increasing the font size */
+    background-color: #ffffff; /* Setting a white background for major boxes */
+    padding: 10px; /* Adding padding for better visual appearance */
+    border-radius: 10px; /* Adding border radius for rounded corners */
+}
+.header {
+    background-color: #ffcc00; /* Vibrant yellow background */
+    color: #333;
+    padding: 60px 0; /* Increased padding for more space */
+    text-align: center;
+}
+
+.title {
+    font-size: 48px; /* Increased font size for the title */
+    margin-bottom: 20px; /* Increased margin bottom for separation */
+}
+
+.subtitle {
+    font-size: 24px;
+    margin-top: 20px; /* Increased margin top to move the subtitle down */
+}
