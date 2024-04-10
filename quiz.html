@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Major Quiz</title>
+    <link rel="stylesheet" href="styless.css">
+</head>
+<body>
+    <div class="quiz-container">
+        <h1 class="quiz-title">Find Your Perfect Major!</h1>
+        <div class="question-container">
+            <p id="question-text">Question will appear here...</p>
+            <div class="options-container" id="options-container">
+                <!-- Options will be added dynamically here -->
+            </div>
+            <button id="next-button" onclick="nextQuestion()">Next</button>
+        </div>
+        <div class="result-container" id="result-container">
+            <!-- Result will appear here -->
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+<script>
+    const questions = [
+    {
+        question: "Do you enjoy working with computers or technology?",
+        options: [
+            { text: "Yes", majors: ["Computer Science", "Engineering", "Mathematics"] },
+            { text: "No", majors: ["Business", "History", "Art"] }
+        ]
+    },
+    {
+        question: "Are you interested in studying natural sciences like biology or chemistry?",
+        options: [
+            { text: "Yes", majors: ["Biology", "Chemistry", "Physics"] },
+            { text: "No", majors: ["Psychology", "English Literature", "Health"] }
+        ]
+    },
+    {
+        question: "Do you prefer analytical subjects like mathematics?",
+        options: [
+            { text: "Yes", majors: ["Mathematics", "Physics", "Engineering","Business"] },
+            { text: "No", majors: ["Art", "Psychology","English Literature","Health"] }
+        ]
+    },
+    {
+        question: "Do you like to work in a lab?",
+    options:[
+        { text: "Yes", majors:["Physics","Biology","Chemistry","Engineering","Health"]},
+{text: "No", majors:["Art","Buisness","English Literature","Psycology"]}
+
+    ]
+},
+{
+question:"Are you ok with working long hours?",
+options:[
+    {text:"Yes", majors:["Buisness","Health","Computer Science","Biology","Math","Chemistry","Physics"]},
+    {text:"No", majors:["Art","Psycology","English Literature","History"]}
+]
+
+},
+{
+    question:"Do you like dogs?",
+    options:[
+        {text:"Yes",majors:["Art","Psycology","English Literautre","Computer Science","Health"]},
+    { text:"No",majors:["Business","Biology","Chemistry","Math","Physics"]}
+    ]
+}
+];
+
+let currentQuestion = 0;
+let selectedMajors = [];
+
+function displayQuestion() {
+    const questionTextElement = document.getElementById("question-text");
+    const optionsContainer = document.getElementById("options-container");
+    optionsContainer.innerHTML = "";
+
+    const question = questions[currentQuestion];
+    questionTextElement.textContent = question.question;
+
+    question.options.forEach((option) => {
+        const optionButton = document.createElement("button");
+        optionButton.textContent = option.text;
+        optionButton.classList.add("option");
+        optionButton.addEventListener("click", () => {
+            selectedMajors = selectedMajors.concat(option.majors);
+            nextQuestion();
+        });
+        optionsContainer.appendChild(optionButton);
+    });
+}
+
+function nextQuestion() {
+    currentQuestion++;
+    if (currentQuestion < questions.length) {
+        displayQuestion();
+    } else {
+        showResult();
+    }
+}
+
+function showResult() {
+    const resultContainer = document.getElementById("result-container");
+    resultContainer.innerHTML = "";
+
+    const majorCounts = {};
+    selectedMajors.forEach((major) => {
+        if (majorCounts[major]) {
+            majorCounts[major]++;
+        } else {
+            majorCounts[major] = 1;
+        }
+    });
+
+    const sortedMajors = Object.keys(majorCounts).sort((a, b) => majorCounts[b] - majorCounts[a]);
+
+    const resultText = `Based on your answers, your perfect major could be: <strong>${sortedMajors[0]}</strong>`;
+    resultContainer.innerHTML = resultText;
+    resultContainer.style.display = "block";
+}
+
+// Start quiz
+displayQuestion();
+
+
+</script>
